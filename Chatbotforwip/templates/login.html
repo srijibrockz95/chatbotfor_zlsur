@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> Welcome to ABB - Appointment Booking Bot </title>
+        <link rel = "icon" href="{{ url_for('static', filename='chatbottitleicon.gif') }}" type = "image/gif">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body style="background: url({{ url_for('static', filename='chatbotbg.png') }});
+    background-repeat: no-repeat;">
+        <br /><br /><br /><br /><br />
+        <div align="center">
+          <div class="border">
+             <div class="header">
+                 <div class="word">Welcome to ABB - Appointment Booking Bot</div>
+             </div><br /><br /><br />
+              <div class="word">
+                <form action="/login" method="post">
+                        <input id="username" name="username" type="text" placeholder="Enter your email" class="textbox" required/><br /><br />
+                        <input id="password" name="password" type="password" placeholder="Enter your password" class="textbox" required/><br /><br /><br />
+                        <input type="submit" class="btn" value="Sign In"><br /><br />
+                        {% for msg in get_flashed_messages() %}
+                            {% if msg %}
+                                <h3 style="color: olive;">{{ msg }}</h3>
+                            {% endif %}
+                        {% endfor %}
+                </form>
+              </div>
+          </div>
+        </div>
+        <center>
+            <footer style="background-color:black">
+                <p><label style="color:yellow;font-size:15px;">Creater: Srijib Bhattacharyya</label><br />
+              <a style="font-size:25px;" href="mailto:srijibb4341@gmail.com">Mail me in-case of any issue !</a></p>
+            </footer>
+        </center>
+    </body>
+</html>

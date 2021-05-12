@@ -1,0 +1,13 @@
+Flask
+flask_sqlalchemy
+flask_marshmallow
+marshmallow-sqlalchemy
+Flask-Script
+flask_migrate
+flask_cors
+konfig
+requests
+sqlalchemy
+werkzeug
+fpdf
+nltk

@@ -1,0 +1,3 @@
+INSERT INTO login (userfname,useremail,userid,userrole,passwordhash,creationdatetime,updationdatetime,createdby,modifiedby) VALUES
+	 ('Chatbot Admin','admin_test@gmail.com','CHBT00','admin','pbkdf2:sha256:150000$a0dQEbKn$1a357240cfa103a1017da1396a7c9f5cc42792e4142cf9a6b0fd7ddd797716a8','2021-05-06 21:25:19','2021-05-06 21:25:19',NULL,NULL),
+	 ('ChatBotUser','user_test@mail.com','CHBT01','enduser','pbkdf2:sha256:150000$a0dQEbKn$1a357240cfa103a1017da1396a7c9f5cc42792e4142cf9a6b0fd7ddd797716a8','2021-05-09 22:56:33','2021-05-09 22:56:33','CHBT00',NULL);

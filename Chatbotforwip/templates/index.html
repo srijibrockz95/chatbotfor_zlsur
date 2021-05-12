@@ -1,0 +1,100 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> Welcome to ABB - Appointment Booking Bot </title>
+        <link rel = "icon" href="{{ url_for('static', filename='chatbottitleicon.gif') }}" type = "image/gif">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body style="background: url({{ url_for('static', filename='chatbotbg.png') }});
+    background-repeat: no-repeat;">
+        <br /><br /><br /><br /><br />
+        <div align="center">
+          <div class="border">
+              <div align="right">
+                <div style="text-align:right">Hi {{ fullname|e }}</div>&emsp;<a href="{{ url_for('auth.logout') }}">Logout</a>
+              </div>
+             <div class="header">
+                <div class="word">Welcome to ABB - Appointment Booking Bot</div>
+             </div><br />
+              <div style="overflow-y:scroll; overflow-x:hidden; height:580px;">
+                    {% if greetings %}
+                        <p align="left"><img src="{{ url_for('static', filename='bot.jpeg') }}" alt="Bot" width="50" height="50" />
+                            <label>{{ greetings|e }}</label>
+                        </p>
+                    {% endif %}
+                    {% if chosenques %}
+                    <p align="right">
+                        <label>{{ chosenques|e }}</label>
+                        <img src="{{ url_for('static', filename='human.png') }}" alt="Human" width="50" height="50" />
+                    </p>
+                    {% endif %}
+                    {% if chosenquesans %}
+                         <p align="left"><img src="{{ url_for('static', filename='bot.jpeg') }}" alt="Bot" width="50" height="50" />
+                            {% if filepth %}
+                                <a href="{{ url_for('static', filename=filepth) }}" download>{{ chosenquesans|e }}</a>
+                            {% else %}
+                                <label>{{ chosenquesans|e }}</label>
+                            {% endif %}
+                         </p>
+                    {% endif %}
+                    <form action="/submitchoseques" method="post">
+                            {% if typecustomques %}
+                                <div align="left" class="word">
+                                    <textarea id="customques" maxlength="225" name="customques" cols="40" class="textbox" placeholder="Enter you own query" rows="5"></textarea>
+                                    <input type="submit" id="submitcustomques" name="Submit" class="btn" value="Submit"/>
+                                </div>
+                            {% endif %}
+                            {% if foundques %}
+                                <p align="left">
+                                    Here are some related queries (please click if they match your submitted query):<br /><br />
+                                    {% for f in foundques %}
+                                        <input id="{{ loop.index+2 }}" name="{{ f }}" type="submit" class="btn" value="{{ f }}"><br /><br />
+                                    {% endfor %}
+                                </p>
+                            {% endif %}
+                            {% if questions %}
+                                <p align="left">
+                                    {% if datereqd %}
+                                        <input type="date" id="appointdt" name="appointdt" placeholder="dd-mm-yyyy">
+                                    {% endif %}
+                                    {% if otherques %}
+                                    {% else %}
+                                        Here are some popular queries (please click on them):<br /><br />
+                                    {% endif %}
+                                    {% for q in questions %}
+                                        <input id="{{ loop.index }}" name="{{ q }}" type="submit" class="btn" value="{{ q }}"><br /><br />
+                                    {% endfor %}
+                                </p>
+                            {% endif %}
+                            {% if otherques %}
+                                <p align="left">
+                                    Here are some other queries (please click on them):<br /><br />
+                                    {% for o in otherques %}
+                                        <input id="{{ loop.index+1 }}" name="{{ o }}" type="submit" class="btn" value="{{ o }}"><br /><br />
+                                    {% endfor %}
+                                </p>
+                            {% endif %}
+                        </form>
+                    <div class="word">
+                        {% for msg in get_flashed_messages() %}
+                            {% if msg %}
+                                <script type="text/javascript">
+                                    function myFunction(data) {
+                                        alert(data);
+                                    }
+                                    myFunction("{{ msg|safe }}");
+                                </script>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    <center>
+        <footer style="background-color:black">
+            <p><label style="color:yellow;font-size:15px;">Creater: Srijib Bhattacharyya</label><br />
+          <a style="font-size:25px;" href="mailto:srijibb4341@gmail.com">Mail me in-case of any issue !</a></p>
+        </footer>
+    </center>
+    </body>
+</html>
